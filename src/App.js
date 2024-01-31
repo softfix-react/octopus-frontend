@@ -14,40 +14,17 @@ import { create } from 'd3';
 import Cookies from 'js-cookie';
 import Orders from './pages/Orders';
 import Navbar from './pages/Navbar';
+import DailyReport from './components/DailyReport';
 
 // export const UserContext = createContext();
 
 function App() {
 
-  const token = Cookies.get('token');
-  const [userData, setUserData] = useState([])
-
-  // const userDetails = async () => {
-  //   try {
-  //     const userDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/user-details`, {
-  //       headers: {
-  //         'Authorization': token
-  //       }
-  //     })
-  //     setUserData(userDetails)
-  //     console.log("playdata", userDetails)
-  //   } catch (error) {
-  //     console.log(error);
-
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   userDetails()
-  // }, [])
-
-
+  // const token = Cookies.get('token');
+  // const [userData, setUserData] = useState([])
   return (
     <>
-
       <BrowserRouter>
-        {/* <UserContext.Provider value={userData}> */}
-
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/registration' element={<Registration />} />
@@ -55,14 +32,10 @@ function App() {
           <Route path='/afterOtp' element={<AfterOtp />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/orders' element={<Orders />} />
+          <Route path='/daily-report' element={<DailyReport />} />
           <Route path='/home' element={<Home />} />
         </Routes>
-        {/* </UserContext.Provider> */}
       </BrowserRouter>
-
-
-
-
     </>
   );
 }

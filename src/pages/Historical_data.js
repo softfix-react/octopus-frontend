@@ -14,8 +14,9 @@ import Navbar from './Navbar';
 IgrFinancialChartModule.register();
 
 const Historical_data = () => {
+    // GET TOKEN
     let token = Cookies.get('token');
-    // console.log("token123", token)
+
     const params = useParams();
     const [intervalId, setIntervalId] = useState(null);
     const [selectData, setSelectData] = useState({
@@ -35,15 +36,13 @@ const Historical_data = () => {
         toDate: new Date().toISOString().split('T')[0],
     })
 
-    console.log("select value", selectData.select)
+    // console.log("select value", selectData.select)
 
-    // const [selectedOptions, setSelectedOptions] = useState([]);
 
     const [selectedData, setSelectedData] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([{ value: 'historical_data', label: 'Historical Data' }]);
 
     useEffect(() => {
-        // Combine selected data based on the selectedOptions
         const selectedValues = selectedOptions.map(option => option.value);
         const selectedDataArray = selectedValues.map(value => {
             switch (value) {
@@ -103,30 +102,6 @@ const Historical_data = () => {
 
     const onChangeSelect = (selected) => {
         setSelectedOptions(selected);
-
-        // Update chart title and data based on selected options
-        // const selectedValues = selected.map(option => option.value);
-
-        // if (selectedValues.includes("MultiSelect")) {
-        //     setChartTitle("Multi-Select");
-        //     data = [historical_data, ema12, VOLSMA20];
-        // } else {
-        //     setChartTitle(selectedValues.join(', '));
-        //     data = selectedValues.map(value => {
-        //         switch (value) {
-        //             case "historical_data":
-        //                 return historical_data;
-        //             case "vwap":
-        //                 return vwap;
-        //             case "ema12":
-        //                 return ema12;
-        //             case "volsma20":
-        //                 return VOLSMA20;
-        //             default:
-        //                 return null;
-        //         }
-        //     });
-        // } 
     };
 
     historical_data.__dataIntents = {
@@ -144,38 +119,15 @@ const Historical_data = () => {
 
     let data = [];
 
-    // switch (selectData.select) {
-    //     case "historical_data":
-    //         data = [historical_data];
-    //         break;
-    //     case "vwap":
-    //         data = [vwap];
-    //         break;
-    //     case "ema12":
-    //         data = [ema12];
-    //         break;
-    //     case "volsma20":
-    //         data = [VOLSMA20];
-    //         break;
-    //     case "MultiSelect":
-    //         data = [[historical_data], [ema12], [VOLSMA20]];
-    //         break;
-    //     default:
-    //         data = [historical_data]; // Default to historical_data
-    //         break;
-    // }
-
 
     const setdate = (e) => {
         setbodydata({ ...bodydata, [e.target.name]: e.target.value })
     }
 
-    // console.log("bodyData", bodydata)
 
     const historicalData = async (e) => {
-        // e.preventDefault();
+
         try {
-            // console.log(params)
             const history = await axios.post(`${process.env.REACT_APP_BASE_URL}api/user/historical-data`, {
                 ...bodydata
             }, {
@@ -183,9 +135,8 @@ const Historical_data = () => {
                     'Authorization': token
                 }
             })
-            // console.log(history.data.data)
             setHistorical_data(history.data.data.history.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
-            // setVwap(history.data.data.vwap.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
+            setVwap(history.data.data.vwap.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
             setEma12(history.data.data.ema12.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
             setVOLSMA20(history.data.data.volsma20.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
 
@@ -226,7 +177,6 @@ const Historical_data = () => {
             <Navbar />
 
             <div style={{ margin: "1rem" }}>
-
                 <Form>
                     <Row >
                         <Col>
@@ -251,7 +201,6 @@ const Historical_data = () => {
                             </Form.Select>
                         </Col>
                         <Col >
-                            {/* <Form.Label>.</Form.Label> */}
                             <Button style={{ marginTop: "1.9rem" }} onClick={historicalData1}>set</Button>
                         </Col>
                     </Row>
@@ -269,15 +218,6 @@ const Historical_data = () => {
                         onChange={onChangeSelect}
                         placeholder="Select options..."
                     />
-
-
-                    {/* <Form.Select aria-label="Default select example" name='select' mode="multiple" onChange={onchangeSelect} style={{ width: "25%" }}>
-                        <option value="historical_data">historical_data</option>
-                        <option value="MultiSelect">MultiSelect</option>
-                    <option value="ema12">EMA12</option>
-                    <option value="volsma20">VOLSMA20</option>
-                    <option value="vwap">VWAP</option>
-                </Form.Select> */}
 
                     <IgrFinancialChart
                         width="100%"
@@ -303,7 +243,6 @@ const Historical_data = () => {
                         zoomSliderType="None"
                         dataSource={selectedData}
 
-                    // dataSource={historical_data}
                     >
                     </IgrFinancialChart>
                 </div>

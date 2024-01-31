@@ -11,29 +11,29 @@ import { UserContext } from '../App';
 import Navbar from './Navbar';
 
 const Profile = () => {
+
+    // get tokken
     let token = Cookies.get('token');
 
-    // const userdata1 = useContext(UserContext)
-
-    // console.log("profileuserDetails", userdata1?.data?.data)
-
-
+    // profile update state
     const [profileUpdate, setProfileUpdate] = useState({
         firstName: "",
         lastName: ""
     })
 
+    // profile onchange function 
     const changeData = (e) => {
         setProfileUpdate({ ...profileUpdate, [e.target.name]: e.target.value })
     }
 
+    // get user data state
     const [userDetails, setUserDetails] = useState({
         firstName: "",
         lastName: ""
     });
 
 
-
+    // get user data 
     const setUserData = async () => {
         try {
             const data = await axios.get(`${process.env.REACT_APP_BASE_URL}api/user/user-details`, {
@@ -58,6 +58,7 @@ const Profile = () => {
     }, [userDetails]);
 
 
+    // update user profile
     const update = async (e) => {
         e.preventDefault();
         try {
@@ -69,7 +70,6 @@ const Profile = () => {
                 }
             });
             toast(updateResponse?.data?.msg)
-            // console.log(updateResponse)
 
         }
         catch (error) {

@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
     const token = Cookies.get('token');
-    console.log("token12", token)
+    // console.log("token12", token)
 
     // const userdata1 = useContext(UserContext)
     const [userData, setUserData] = useState([])

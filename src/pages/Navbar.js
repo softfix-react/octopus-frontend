@@ -110,7 +110,7 @@ const Navbar = () => {
                     'Authorization': token
                 }
             })
-            console.log(data.data.data)
+            // console.log(data.data.data)
             setUserDetails(data.data.data)
         }
         catch (error) {
@@ -200,10 +200,11 @@ const Navbar = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => navigator('/home')} >Dashboard</Dropdown.Item>
                         <Dropdown.Item onClick={() => navigator('/profile')} >profile</Dropdown.Item>
                         <Dropdown.Item onClick={() => setModalShow1(true)} >User Settings</Dropdown.Item>
                         <Dropdown.Item onClick={() => navigator('/orders')} >My Orders</Dropdown.Item>
-
+                        <Dropdown.Item onClick={() => navigator('/daily-report')} >Daily Report</Dropdown.Item>
                         <Dropdown.Item onClick={() => setModalShow(true)}  >Zerodha Credentials</Dropdown.Item>
                         <Dropdown.Item ><Button variant="" className='buttonpadding' style={{ padding: "0px" }} onClick={logout} >LogOut</Button></Dropdown.Item>
                     </Dropdown.Menu>

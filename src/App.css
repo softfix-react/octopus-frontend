@@ -392,6 +392,22 @@
 
 
 
+/* daily reports */
+/* ============================================ */
+
+.border {
+  border: 2px solid gray;
+}
+
+.bg-color {
+  background-color: green;
+}
+
+
+
+
+
+
 
 /* media quary 0 to 761px  */
 
