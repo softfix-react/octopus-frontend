@@ -10,28 +10,12 @@
   position: relative;
 }
 
-
-
-/* .registration-container .notification-container {
-  position: absolute;
-  top: -50px;
-  left: 20px;
-  z-index: 12;
-  background-color: #FB9291;
-  box-shadow: 1px 1px 12px 1px rgb(221, 221, 226);
-  padding: 0.7rem;
-  color: white;
-  border-radius: 5px;
-} */
-
-
 .notification-container {
   background-color: #FB9291;
   padding: 0.7rem;
   color: white;
 
 }
-
 
 .registration-container .notification-container {
   position: absolute;
@@ -551,4 +535,12 @@
 
 .buttonpadding {
   --bs-btn-padding-x: 0
+}
+
+
+/* historical data */
+
+.financialChartZoomSlider {
+  height: 16px;
+  margin-top: 2rem;
 }

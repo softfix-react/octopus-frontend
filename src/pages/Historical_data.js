@@ -135,10 +135,10 @@ const Historical_data = () => {
                     'Authorization': token
                 }
             })
-            setHistorical_data(history.data.data.history.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
-            setVwap(history.data.data.vwap.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
-            setEma12(history.data.data.ema12.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
-            setVOLSMA20(history.data.data.volsma20.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
+            setHistorical_data(history?.data?.data?.history.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
+            setVwap(history?.data?.data?.vwap.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
+            setEma12(history?.data?.data?.ema12.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
+            setVOLSMA20(history?.data?.data?.volsma20.map((elm, ind) => ({ ...elm, date: new Date(elm.date) })))
 
         } catch (error) {
             console.log(error)
@@ -209,7 +209,7 @@ const Historical_data = () => {
 
 
 
-            <div className="container sample" style={{ width: "100%", height: "80vh" }} >
+            <div className=" sample" style={{ width: "100%", height: "90vh" }} >
                 <div className="container" >
                     <Select
                         isMulti
@@ -233,18 +233,25 @@ const Historical_data = () => {
                         subtitleLeftMargin="25"
                         subtitleTopMargin="5"
                         subtitleBottomMargin="10"
+                        yAxisMode="PercentChange"
                         negativeOutlines="rgb(213, 94, 0)"
                         yAxisLabelLocation="OutsideLeft"
-                        yAxisMode="Numeric"
+                        // yAxisMode="Numeric"
                         yAxisTitle="Financial Prices"
                         yAxisTitleLeftMargin="10"
                         yAxisTitleRightMargin="5"
                         yAxisLabelLeftMargin="0"
-                        zoomSliderType="None"
+                        // zoomSliderType="None"
                         dataSource={selectedData}
+
+
 
                     >
                     </IgrFinancialChart>
+
+                    {
+                        console.log("selectedData", selectedData)
+                    }
                 </div>
             </div >
         </>

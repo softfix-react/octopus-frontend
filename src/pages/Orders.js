@@ -96,6 +96,7 @@ const Orders = () => {
             dataIndex: 'tradingsymbol',
             key: 'tradingsymbol',
         },
+
         {
             title: 'Transaction Type',
             dataIndex: 'transaction_type',
@@ -123,6 +124,23 @@ const Orders = () => {
             dataIndex: 'updatedAt',
             key: 'updatedAt',
             render: (_, elem) => `${(new Date(elem?.updatedAt))?.toLocaleString()} `
+        },
+        {
+            title: 'Match Condition',
+            dataIndex: 'conditionMatch',
+            key: 'conditionMatch',
+            render: (elem) => {
+                return (
+                    <>
+                        <div className='' style={{ width: "500px" }}>
+
+                            <p className='m-0'>Low Price:{elem?.lowPrice?.toFixed(2)}, Close Price:{elem?.closePrice?.toFixed(2)}, VWAP:{elem?.vwap?.toFixed(2)}, Volume:{elem?.volume?.toFixed(2)}, Volsma20Cal:{elem?.volsma20Cal?.toFixed(2)}, Previous Close Price:{elem?.closePricePrevious?.toFixed(2)}, Previous VWAP:{elem?.vwapPrevious?.toFixed(2)}</p>
+
+                        </div>
+                    </>
+                );
+            }
+
         },
     ]
 

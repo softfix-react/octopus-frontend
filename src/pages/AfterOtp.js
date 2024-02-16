@@ -57,13 +57,13 @@ const AfterOtp = () => {
             });
             // console.log(userData.data)
 
-            toast(userData.data.msg)
+            toast(userData?.data?.msg)
             setModalShow(false);
             autoLogin();
             // console.log("userdata", userData);
         } catch (error) {
             // alert(error.response.data.errors)
-            toast(error.response.data.errors)
+            toast(error?.response?.data?.errors)
             console.log(error)
         }
     }
@@ -77,14 +77,14 @@ const AfterOtp = () => {
             })
 
             toast(login.data.msg)
-            if (login.data.status === false) {
+            if (login?.data?.status === false) {
                 navigator('/afterOtp')
             }
             else {
                 navigator('/home')
             }
         } catch (error) {
-            toast(error.response.data.msg)
+            toast(error?.response?.data?.msg)
             console.log(error)
         }
     }
